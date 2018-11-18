@@ -1,0 +1,18 @@
+- hosts: all
+  gather_facts: no
+  tasks:
+    - shell: free -m
+      register: free 
+    - debug: var=free.stdout_lines
+- hosts: all
+  gather_facts: no
+  tasks:
+    - shell: lscpu
+      register: lscpu
+    - debug: var=lscpu.stdout_lines
+- hosts: all
+  gather_facts: no
+  tasks:
+    - shell: uname -a
+      register: uname 
+    - debug: var=uname.stdout_lines

@@ -1,0 +1,21 @@
+---
+- hosts: variable
+  tasks:
+    - name: ensure nginx is at the latest version
+      yum: name=nginx state=latest
+      become: yes
+    - name: start nginx
+      service:
+          name: nginx
+          state: started
+      become: yes
+    - name: copy the nginx config file and restart nginx
+      copy:
+        src: /opt/nginx.conf
+        dest: /etc/nginx/
+      become: yes
+    - name: restart nginx
+      service:
+        name: nginx
+        state: restarted
+      become: yes
